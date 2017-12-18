@@ -29,10 +29,7 @@ public class MarkingBehavior : MonoBehaviour {
 			Debug.DrawLine (transform.position, transform.position+ Vector3.down, Color.red,2,false);
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, maxMarkableDistance + 0.1f,LayerMask.NameToLayer("Ground"));
 			if(hit.collider!=null){
-				Markable toMark = hit.transform.gameObject.GetComponent<Markable> ();
-				if (toMark == null)
-					return;
-				Vector2 markPosition = toMark.gameObject.transform.position;
+				Vector2 markPosition = hit.collider.gameObject.transform.position;
 				TerrainChunk tc = TerrainSelector.SelectSquare (new Vector2(markPosition.x-1,markPosition.y),new Vector2(markPosition.x+2,markPosition.y+3));
 				if (selections.Count <= 0) {
 					tc.MarkChunk (GetColour());

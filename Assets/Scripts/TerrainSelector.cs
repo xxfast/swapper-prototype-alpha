@@ -17,7 +17,8 @@ public class TerrainSelector : ScriptableObject {
 			for(int y=(int)from.y;y<(int)to.y;y++){
 				if (x > 0 && y > 0 && x < gl1 && y < gl2) {
 					if(GridAligned.cells[x,y]!=null)
-						toReturn.terrains.Add (GridAligned.cells [x, y].GetComponent<Markable> ());
+						if(GridAligned.cells [x, y].GetComponent<Markable> ())
+							toReturn.terrains.Add (GridAligned.cells [x, y].GetComponent<Markable> ());
 				}
 			}
 		}
